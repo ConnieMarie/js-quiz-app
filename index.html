@@ -12,20 +12,21 @@
         <h1 class="page-title">JavaScript Quiz</h1>
         <p>Click the start button when you are ready to start the quiz!</p>
     </header>
-    <div class="container"></div>
-        <div id="Question-container">
-            <div id="Question-text">Question</div>
+    <div class="container">
+        <div id="question-container">
+            <div id="question-text">Question</div>
                 <div id="answer-choices">
-                    <button class="btn">a</button>
-                    <button class="btn">b</button>
-                    <button class="btn">c</button>
-                    <button class="btn">d</button>
+                    <button class="answer-btn" id="answer-a">a</button>
+                    <button class="answer-btn" id="answer-b">b</button>
+                    <button class="answer-btn" id="answer-c">c</button>
+                    <button class="answer-btn" id="answer-d">d</button>
                 </div>
-            </div>
-            <div class="controls">
-                <button id="start-btn" class="start-btn btn">Start Quiz</button>
-                <button id="next-btn" class="next-btn btn">Next Question</button>
-            </div>
+                <div class="controls">
+                    <button class="control-btn" id="start-btn">Start</button>
+                    <button class="control-btn" id="next-btn">Next</button>
+                </div>
+        </div>
+    </div>
       <script src="./assets/js/script.js"></script>
 </body>
 </html>
