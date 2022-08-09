@@ -1,12 +1,13 @@
 // define variables to be called upon
 var questionText = document.getElementById("question-text");
-var choices = document.getElementById("choices");
-// var answerA = document.getElementById("answer-a");
-// var answerB = document.getElementById("answer-b");
-// var answerC = document.getElementById("answer-c");
-// var answerD = document.getElementById("answer-d");
+var answerA = document.getElementById("answer-a");
+var answerB = document.getElementById("answer-b");
+var answerC = document.getElementById("answer-c");
+var answerD = document.getElementById("answer-d");
 var startBtn = document.querySelector("#start-btn");
-var nextBtn = document.querySelector("#next-btn");
+var qIndex = 0
+var timerEl = document.getElementById("timer");
+var isCorrect = true;
 
 
 
@@ -17,83 +18,88 @@ var questions = [
     {
         questionText: "Which of these examples is NOT a javascript data type?",
         answerChoices: ["Number", "Boolean", "Debugger", "String"],
-        correctAnswer: "Debugger"
+        correctAnswer: "Debugger",
     },
 
     {
         questionText: "Which of these statements is true?",
-        correctAnswer: answerB,
-        answerChoices: [{answerA: "2 === '2'"}, {answerB: "x == y"}, {answerC: "x === y"}, {answerD: "4 != 4"}]
+        answerChoices: ["2 === '2'", "'x' == 'y'", "x === y", "4 != 4"],
+        correctAnswer: "'x' == 'y'",
     },
     {
         questionText: "In which ways can a JavaScript code be involvedin an HTML file?",
-        correctAnswer: answerD,
-        answerChoices: [{answerA: "Inline"}, {answerB: "Internal"}, {answerC: "External"}, {answerD: "All of the above"}]    
+        answerChoices: ["Inline", "Internal", "External", "All of the above"],    
+        correctAnswer: "All of the above",
     },
     {
-        questionText: "Inside which HTML element do we put the JavaScript?",
-        correctAnswer: answerC,
-        answerChoices: [{answerA: "<scripting>"}, {answerB: "<js>"}, {answerC: "<script>"}, {answerD: "<javascript>"}]
+        questionText: "Which statement cannot be used to declare a variable in JavaScript?",
+        answerChoices: ["Let", "Var", "Int", "Const"],
+        correctAnswer: "Int",
     },
     {
         questionText: "Which operator is used to assign a value to a variable?",
-        correctAnswer: answerB,
-        answerChoices: [{answerA: "*"}, {answerB: "="}, {answerC: "+"}, {answerD: "X"}]
-    },
+        answerChoices: ["*", "=", "+", "X"],
+        correctAnswer: "=",
+     },
     {
         questionText: "Which event occurs when the user clicks on an HTML element?",
-        correctAnswer: answerA,
-        answerChoices: [{answerA: "onclick"}, {answerB: "onmouseover"}, {answerC: "onmouseclick"}, {answerD: "onchange"}]
-    },
-]
+        answerChoices: ["onclick", "onmouseover", "onmouseclick", "onchange"],
+        correctAnswer: "onclick",
+     },
+];
 
 //add click events to control buttons
 startBtn.addEventListener("click", startQuiz);
-nextBtn.addEventListener("click", next);
+answerA.addEventListener("click", next);
+answerB.addEventListener("click", next);
+answerC.addEventListener("click", next);
+answerD.addEventListener("click", next);
 //creat functions to dispay questions and answer choices
 //add if statements to indicate when correct or incorrect answers are chosen
 
 //add localStorage to store highscore
 
 //define function to start timer/decrement time from timer
-//function startTimer(){}
-
-
 //define function to show first question after clicking start
 function startQuiz() {
-    var firstQ = (questions[0].questionText);
-    // var firstA = (questions[0].answerChoices);
+    window.startTime = 60
+    let timer = setInterval(() => {
+       startTime--;
+       console.log(startTime);
+       timerEl.textContent = startTime
+       if (startTime <= 0){
+        clearInterval(timer)
+       }
+      }, 1000)
 
-    questionText.innerHTML = (firstQ);
-    // choices.innerHTML = (firstA);
-    // var button = document.createElement("button");
-    // button.type = "button";
-    // button.innerHTML = "answer-choices";
-    // button.className = "choices";
-
-    
-
-    // var choices = document.getElementById("choices");
-    // choices.appendChild(button);
+    questionText.innerHTML = (questions[qIndex].questionText);
+    answerA.innerHTML = (questions[qIndex].answerChoices[0]);
+    answerB.innerHTML = (questions[qIndex].answerChoices[1]);
+    answerC.innerHTML = (questions[qIndex].answerChoices[2]);
+    answerD.innerHTML = (questions[qIndex].answerChoices[3]);
 };
-//define function to show next question when nextbtn is clicked
-//function next() {}
+//define function to show next question when answer is selected
+function next(e) {
+    qIndex++
+    //statement to indicate correct/incorrect answer
+    if (e.target.innerHTML===questions[qIndex-1].correctAnswer){
+        isCorrect = true
+    } else {
+        isCorrect = false
+        window.startTime -= 10
+    }
 
+    // console.log(questions[qIndex-1].correctAnswer)
+    // console.log(e.target.innerHTML)
+    questionText.innerHTML = (questions[qIndex].questionText);
+    answerA.innerHTML = (questions[qIndex].answerChoices[0]);
+    answerB.innerHTML = (questions[qIndex].answerChoices[1]);
+    answerC.innerHTML = (questions[qIndex].answerChoices[2]);
+    answerD.innerHTML = (questions[qIndex].answerChoices[3]);
 
-//define funtion to show questions
-// function showQuestions() {
-//     for (i = 0; i < questions.length; i++) {
-//         (questions += questionText * i);
+   
     
-// }
-
-startBtn.onclick = startQuiz() 
-    showQuestions(questionText);
-    console.log("clicked");
     
-
-nextBtn.onclick = next()
-        showQuestions(questions);
-        console.log("clicked");
+};
 
 
