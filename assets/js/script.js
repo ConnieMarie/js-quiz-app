@@ -5,11 +5,11 @@ var answerB = document.getElementById("answer-b");
 var answerC = document.getElementById("answer-c");
 var answerD = document.getElementById("answer-d");
 var startBtn = document.querySelector("#start-btn");
-var qIndex = 0
 var timerEl = document.getElementById("timer");
+var qIndex = 0
 var isCorrect = true;
-
-
+let timer;
+let score;
 
 
 
@@ -57,20 +57,21 @@ answerD.addEventListener("click", next);
 //creat functions to dispay questions and answer choices
 //add if statements to indicate when correct or incorrect answers are chosen
 
-//add localStorage to store highscore
-
 //define function to start timer/decrement time from timer
 //define function to show first question after clicking start
 function startQuiz() {
-    window.startTime = 60
-    let timer = setInterval(() => {
+    window.startTime = 30
+    timer = setInterval(() => {
        startTime--;
-       console.log(startTime);
+    //    console.log(startTime);
        timerEl.textContent = startTime
        if (startTime <= 0){
-        clearInterval(timer)
+        endQuiz();
        }
-      }, 1000)
+      }, 1000);
+//** start button restarts timer */
+//** need a function to end quiz when all questions have been asked or timer runs out */
+
 
     questionText.innerHTML = (questions[qIndex].questionText);
     answerA.innerHTML = (questions[qIndex].answerChoices[0]);
@@ -80,26 +81,43 @@ function startQuiz() {
 };
 //define function to show next question when answer is selected
 function next(e) {
-    qIndex++
+   
     //statement to indicate correct/incorrect answer
-    if (e.target.innerHTML===questions[qIndex-1].correctAnswer){
+    if (e.target.innerHTML===questions[qIndex].correctAnswer){
         isCorrect = true
     } else {
         isCorrect = false
         window.startTime -= 10
-    }
+
+    };
+    qIndex++
+    
 
     // console.log(questions[qIndex-1].correctAnswer)
     // console.log(e.target.innerHTML)
+    if (qIndex < questions.length) {
     questionText.innerHTML = (questions[qIndex].questionText);
     answerA.innerHTML = (questions[qIndex].answerChoices[0]);
     answerB.innerHTML = (questions[qIndex].answerChoices[1]);
     answerC.innerHTML = (questions[qIndex].answerChoices[2]);
     answerD.innerHTML = (questions[qIndex].answerChoices[3]);
 
-   
-    
-    
+    } else {
+        endQuiz()
+    };
+
+    //define function to end quiz when last answer is selected
+
+};
+
+function endQuiz() {
+    clearInterval(timer)
+
+//  console.log("All done!")
 };
 
 
+//add form to enter initials for highscore
+//define function to store highcore
+//start score = 0
+//

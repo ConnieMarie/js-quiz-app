@@ -17,14 +17,16 @@ body {
 }
 
 header {
+    margin: -10vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 100px;
+    top: 20vh;
     color: #05386b;
     font-weight: bold;
+    max-width: 75vw;
 }
 
 .container {
@@ -46,9 +48,10 @@ header {
 }
 
 #question-text {
-    font-size: 28px;
+    font-size: large;
     font-weight: bold;
     color: #edf5e1;
+    align-items: center;
 }
 
 
@@ -70,7 +73,6 @@ header {
     color: #05386b ;
     margin: 8px;
     height: 6vh;
-    width: 8vw;
 }
 
 .answer-btn {
@@ -81,11 +83,20 @@ header {
     color: #05386b ;
     margin: 10px;
     height: 4vh;
-    /* width: 3vw; */
     display: flex;
-    /* flex-direction: column; */
     position: relative;
-    /* right: 30vw; */
     top: 2vh;
 
+}
+
+.hide {
+    display: none;
+}
+
+@media screen and (max-width: 375px) {
+
+header {
+    max-width: 75vw;
+}
+    
 }
