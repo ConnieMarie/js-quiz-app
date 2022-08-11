@@ -6,6 +6,7 @@ When an answer is chosen, the next question and set of answers will appear.
 If an incorrect answer is selected, 10 seconds will be deducted from the timer.
 The quiz will end when either the timer has reached zero or all questions have been answered.
 
+https://conniemarie.github.io/js-quiz-app/
 
 ![quiz-ss1](https://user-images.githubusercontent.com/105762638/184065609-9c98f78a-dc46-4cde-bf90-58275c21aadf.png)
 
