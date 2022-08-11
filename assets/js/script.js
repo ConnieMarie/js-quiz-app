@@ -55,7 +55,6 @@ answerB.addEventListener("click", next);
 answerC.addEventListener("click", next);
 answerD.addEventListener("click", next);
 //creat functions to dispay questions and answer choices
-//add if statements to indicate when correct or incorrect answers are chosen
 
 //define function to start timer/decrement time from timer
 //define function to show first question after clicking start
@@ -63,15 +62,11 @@ function startQuiz() {
     window.startTime = 30
     timer = setInterval(() => {
        startTime--;
-    //    console.log(startTime);
        timerEl.textContent = startTime
        if (startTime <= 0){
         endQuiz();
        }
       }, 1000);
-//** start button restarts timer */
-//** need a function to end quiz when all questions have been asked or timer runs out */
-
 
     questionText.innerHTML = (questions[qIndex].questionText);
     answerA.innerHTML = (questions[qIndex].answerChoices[0]);
@@ -93,8 +88,6 @@ function next(e) {
     qIndex++
     
 
-    // console.log(questions[qIndex-1].correctAnswer)
-    // console.log(e.target.innerHTML)
     if (qIndex < questions.length) {
     questionText.innerHTML = (questions[qIndex].questionText);
     answerA.innerHTML = (questions[qIndex].answerChoices[0]);
